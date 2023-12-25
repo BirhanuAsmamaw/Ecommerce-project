@@ -32,62 +32,54 @@ const dummyData : Product[] = [
     price: '$89.99',
     inCart: false,
   },
-  {
-    name: 'Shoe 6',
-    image: 'shoe5.jpg',
-    price: '$99.99',
-    inCart: false,
-  },
-  {
-    name: 'Shoe 7',
-    image: 'shoe6.jpg',
-    price: '$109.99',
-    inCart: false,
-  },
-  {
-    name: 'Shoe 8',
-    image: 'shoe7.jpg',
-    price: '$119.99',
-    inCart: false,
-  },
-  {
-    name: 'Shoe 9',
-    image: 'shoe8.jpg',
-    price: '$129.99',
-    inCart: false,
-  },
-  {
-    name: 'Shoe 10',
-    image: 'shoe9.jpg',
-    price: '$139.99',
-    inCart: false,
-  },
+  // {
+  //   name: 'Shoe 6',
+  //   image: 'shoe5.jpg',
+  //   price: '$99.99',
+  //   inCart: false,
+  // },
+  // {
+  //   name: 'Shoe 7',
+  //   image: 'shoe6.jpg',
+  //   price: '$109.99',
+  //   inCart: false,
+  // },
+  // {
+  //   name: 'Shoe 8',
+  //   image: 'shoe7.jpg',
+  //   price: '$119.99',
+  //   inCart: false,
+  // },
+  // {
+  //   name: 'Shoe 9',
+  //   image: 'shoe8.jpg',
+  //   price: '$129.99',
+  //   inCart: false,
+  // },
+  // {
+  //   name: 'Shoe 10',
+  //   image: 'shoe9.jpg',
+  //   price: '$139.99',
+  //   inCart: false,
+  // },
 ];
 
 type State = {
   products: Product[];
   carts: Product[];
-  pagination: {
-    currentPage: number;
-    pageSize: number;
-  };
+  totalPrice: number;
 };
 
 type Actions = {
   addToCart: (productName: string) => void;
   removeFromCart: (productName: string) => void;
   getProducts: () => Product[];
-  goToPrevPage: () => void;
-  goToNextPage: () => void;
 };
 
 const useProductStore = create<State & Actions>((set, get) => ({
   products: dummyData,
   carts: [],
-  pagination: {
-    currentPage: 1,
-    pageSize: 5,
-  },
+  totalPrice: 0,
   addToCart: (productName) => {
     set((state) => {
       const updatedProducts = state.products.map((product) => {
@@ -96,6 +88,18 @@ const useProductStore = create<State & Actions>((set, get) => ({
         }
         return product;
       });
+
+      const selectedProduct = state.products.find((product) => product.name === productName);
+
+      if (selectedProduct) {
+        const newProductState = { ...selectedProduct, inCart: true };
+        const newTotalPrice = state.totalPrice + parsePrice(selectedProduct.price);
+        return {
+          products: updatedProducts,
+          carts: [...state.carts, newProductState],
+          totalPrice: newTotalPrice,
+        };
+      }
 
       return { products: updatedProducts };
     });
@@ -109,31 +113,26 @@ const useProductStore = create<State & Actions>((set, get) => ({
         return product;
       });
 
+      const removedProduct = state.carts.find((product) => product.name === productName);
+
+      if (removedProduct) {
+        const newTotalPrice = state.totalPrice - parsePrice(removedProduct.price);
+        const updatedCarts = state.carts.filter((product) => product.name !== productName);
+        return { products: updatedProducts, carts: updatedCarts, totalPrice: newTotalPrice };
+      }
+
       return { products: updatedProducts };
     });
   },
   getProducts: () => {
-    const { currentPage, pageSize } = get().pagination;
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    return get().products.slice(startIndex, endIndex);
-  },
-  goToPrevPage: () => {
-    set((state) => ({
-      pagination: {
-        ...state.pagination,
-        currentPage: state.pagination.currentPage - 1,
-      },
-    }));
-  },
-  goToNextPage: () => {
-    set((state) => ({
-      pagination: {
-        ...state.pagination,
-        currentPage: state.pagination.currentPage + 1,
-      },
-    }));
+    return get().products;
   },
 }));
 
 export default useProductStore;
+
+// Helper function to parse the price string and extract the numeric value
+function parsePrice(price: string): number {
+  const numericValue = price.replace(/[^0-9.-]+/g, '');
+  return parseFloat(numericValue);
+}

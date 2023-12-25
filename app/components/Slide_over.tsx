@@ -1,3 +1,4 @@
+import useProductStore from "@/store/product";
 import CartProduct from "./CartProductCard";
 
 type SlideOverProps = {
@@ -6,6 +7,9 @@ type SlideOverProps = {
   };
 
   const SlideOver: React.FC<SlideOverProps> = ({ visible, setVisibility }) => {
+
+    const carts = useProductStore((state) => state.carts);
+    const totalPrice = useProductStore((state)=> state.totalPrice)
     return (
         <div className={`relative z-10 ${visible ? "block" : "hidden"}`} aria-labelledby="slide-over-title" role="dialog" aria-modal="true" >
                 
@@ -25,7 +29,7 @@ type SlideOverProps = {
                                     <span className="absolute -inset-0.5"></span>
                                     <span className="sr-only">Close panel</span>
                                     <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    <path strokeLinecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 </button>
                                 </div>
@@ -34,11 +38,8 @@ type SlideOverProps = {
                             <div className="mt-8">
                                 <div className="flow-root">
                                 <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                    <CartProduct/>
-                                    <CartProduct/>
-                                    <CartProduct/>
-                                    <CartProduct/>
-                                    <CartProduct/>
+                                    {carts.map((item) => <CartProduct image={item.image} name={item.name} price={item.price} inCart={item.inCart}/>)}
+                                    
                                 </ul>
                                 </div>
                             </div>
@@ -46,13 +47,14 @@ type SlideOverProps = {
 
                             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                             <div className="flex justify-between text-base font-medium text-gray-900">
-                                <p>Subtotal</p>
-                                <p>$262.00</p>
+                                <p>Total</p>
+                                <p>{totalPrice}</p>
                             </div>
-                            <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                            <div className="mt-6">
+                            {/* <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p> */}
+
+                            {/* <div className="mt-6">
                                 <a href="#" className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
-                            </div>
+                            </div> */}
                             
                             </div>
                         </div>

@@ -10,14 +10,20 @@ interface productProp {
 
 const ProductCart = ({ image, name, price, inCart }: productProp) => {
   const addToCart = useProductStore((state) => state.addToCart);
+  const products = useProductStore((state) => state.products);
+  const carts = useProductStore((state) => state.carts);
   const removeFromCart = useProductStore((state) => state.removeFromCart);
 
+
+  
   const handleAddToCart = () => {
     addToCart(name);
+    console.log(products)
   };
 
   const handleRemoveFromCart = () => {
     removeFromCart(name);
+    console.log(products)
   };
 
   return (
@@ -31,7 +37,7 @@ const ProductCart = ({ image, name, price, inCart }: productProp) => {
         <a
           onClick={inCart ? handleRemoveFromCart : handleAddToCart}
           href="#"
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className={`inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white ${inCart ? "bg-red-700 rounded-lg hover:bg-red-800" : "bg-blue-700 rounded-lg hover:bg-blue-800"} focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
         >
           {inCart ? "Remove from Cart" : "Add to Cart"}
         </a>
