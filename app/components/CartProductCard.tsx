@@ -10,7 +10,6 @@ const CartProduct = ({ image, name, price, inCart }: productProp) => {
     const removeFromCart = useProductStore((state) => state.removeFromCart);
     const handleRemoveFromCart = () => {
         removeFromCart(name);
-        // console.log(products)
       };
     return ( 
         <li className="flex py-6">
@@ -26,10 +25,10 @@ const CartProduct = ({ image, name, price, inCart }: productProp) => {
                 </h3>
                 <p className="ml-4">{price}</p>
             </div>
-            {/* <p className="mt-1 text-sm text-gray-500">Blue</p> */}
+        
             </div>
             <div className="flex flex-1 items-end justify-between text-sm">
-            {/* <p className="text-gray-500">Qty 1</p> */}
+           
 
             <div className="flex">
                 <button onClick={handleRemoveFromCart} type="button" className="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>

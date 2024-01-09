@@ -10,20 +10,15 @@ interface productProp {
 
 const ProductCart = ({ image, name, price, inCart }: productProp) => {
   const addToCart = useProductStore((state) => state.addToCart);
-  const products = useProductStore((state) => state.products);
-  const carts = useProductStore((state) => state.carts);
   const removeFromCart = useProductStore((state) => state.removeFromCart);
 
 
   
   const handleAddToCart = () => {
     addToCart(name);
-    console.log(products)
-  };
-
+  }
   const handleRemoveFromCart = () => {
     removeFromCart(name);
-    console.log(products)
   };
 
   return (

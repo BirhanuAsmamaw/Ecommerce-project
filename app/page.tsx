@@ -1,15 +1,10 @@
 "use client"
 import useProductStore from "@/store/product";
 import ProductCart from "./components/ProductCart";
-import SlideOver from "./components/Slide_over";
 
 export default function Home() {
   const products = useProductStore((state) => state.products);
-  const carts = useProductStore((state) => state.carts);
-  // const goToNextPage = useProductStore((state) => state.goToNextPage);
-  // const goToPrevPage = useProductStore((state) => state.goToPrevPage);
-  console.log(products);
-  console.log(carts)
+
   return (
     <main className="flex flex-col h-fit w-full p-4">
       
