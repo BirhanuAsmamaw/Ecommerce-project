@@ -4,4 +4,6 @@ type Product = {
     price: string;
     inCart: boolean;
   };
-  
+
+
+
