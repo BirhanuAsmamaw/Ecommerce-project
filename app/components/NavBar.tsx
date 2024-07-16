@@ -5,7 +5,6 @@ import { useState } from "react";
 
 const NavBar = () => {
   const [slideOverVisible, setSlideOverVisible] = useState(false);
-
   const handleCartClick = () => {
     setSlideOverVisible(true);
   };
