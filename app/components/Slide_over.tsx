@@ -5,7 +5,6 @@ type SlideOverProps = {
     visible: boolean;
     setVisibility: (visible: boolean) => void;
   };
-
   const SlideOver: React.FC<SlideOverProps> = ({ visible, setVisibility }) => {
 
     const carts = useProductStore((state) => state.carts);
