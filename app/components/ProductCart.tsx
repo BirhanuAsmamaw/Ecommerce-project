@@ -1,6 +1,5 @@
 import useProductStore from "@/store/product";
 
-
 interface productProp {
   image: string;
   name: string;
