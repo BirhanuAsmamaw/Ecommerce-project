@@ -10,6 +10,7 @@ type SlideOverProps = {
     const carts = useProductStore((state) => state.carts);
     const totalPrice = useProductStore((state)=> state.totalPrice)
     return (
+        
         <div className={`relative z-10 ${visible ? "block" : "hidden"}`} aria-labelledby="slide-over-title" role="dialog" aria-modal="true" >
                 <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
