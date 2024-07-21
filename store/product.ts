@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 const dummyData : Product[] = [
+  
   {
     name: 'Shoe 1',
     image: 'shoe.jpg',
