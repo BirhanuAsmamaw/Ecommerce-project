@@ -9,7 +9,6 @@ const NavBar = () => {
     setSlideOverVisible(true);
   };
   return (
-    
     <div className="bg-slate-200 flex justify-end p-4 ">
       <button className="mr-3" onClick={handleCartClick}>
         <FaCartPlus size="30" />
