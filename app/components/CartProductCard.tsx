@@ -25,7 +25,6 @@ const CartProduct = ({ image, name, price, inCart }: productProp) => {
                 </h3>
                 <p className="ml-4">{price}</p>
             </div>
-        
             </div>
             <div className="flex flex-1 items-end justify-between text-sm">
            
