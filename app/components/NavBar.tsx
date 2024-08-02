@@ -4,6 +4,7 @@ import SlideOver from "./Slide_over";
 import { useState } from "react";
 
 const NavBar = () => {
+  
   const [slideOverVisible, setSlideOverVisible] = useState(false);
   const handleCartClick = () => {
     setSlideOverVisible(true);
