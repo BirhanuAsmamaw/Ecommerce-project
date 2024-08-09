@@ -14,10 +14,7 @@ export default function Home() {
       ))}
     </div>
       
-
      <div className="flex justify-center mt-5">
-
-    
       <nav aria-label="Page navigation example mt-5">
         <ul className="inline-flex -space-x-px text-base h-10">
           <li>
