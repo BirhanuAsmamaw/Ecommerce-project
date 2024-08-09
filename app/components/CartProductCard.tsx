@@ -6,6 +6,7 @@ interface productProp {
     price: string;
     inCart: boolean;
   }
+
 const CartProduct = ({ image, name, price, inCart }: productProp) => {
     const removeFromCart = useProductStore((state) => state.removeFromCart);
     const handleRemoveFromCart = () => {
