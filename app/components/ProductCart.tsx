@@ -13,6 +13,7 @@ const ProductCart = ({ image, name, price, inCart }: productProp) => {
   const handleAddToCart = () => {
     addToCart(name);
   }
+  
   const handleRemoveFromCart = () => {
     removeFromCart(name);
   };
