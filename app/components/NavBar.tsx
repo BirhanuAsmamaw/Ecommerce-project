@@ -14,8 +14,7 @@ const NavBar = () => {
         <FaCartPlus size="30" />
       </button>
       <SlideOver visible={slideOverVisible} setVisibility={setSlideOverVisible} />
-    </div>
-    
+    </div>  
   );
 };
 
