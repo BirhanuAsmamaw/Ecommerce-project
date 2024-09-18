@@ -2,7 +2,6 @@
 import useProductStore from "@/store/product";
 import ProductCart from "./components/ProductCart";
 
-
 export default function Home() {
   const products = useProductStore((state) => state.products);
 
