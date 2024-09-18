@@ -6,7 +6,6 @@ export default function Home() {
   const products = useProductStore((state) => state.products);
 
   return (
-    
     <main className="flex flex-col h-fit w-full p-4">
     <div className="grid grid-cols-5 grid-rows-1 gap-4">
       {products.map((data) => (
