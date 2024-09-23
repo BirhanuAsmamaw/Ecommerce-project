@@ -19,6 +19,7 @@ const ProductCart = ({ image, name, price, inCart }: productProp) => {
     removeFromCart(name);
   };
 
+  
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <img className="rounded-t-lg h-64 w-full object-cover" src={`/images/${image}`} alt="" />
@@ -38,5 +39,4 @@ const ProductCart = ({ image, name, price, inCart }: productProp) => {
     </div>
   );
 };
-
 export default ProductCart;
