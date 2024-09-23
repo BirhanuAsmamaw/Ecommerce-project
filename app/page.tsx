@@ -12,7 +12,7 @@ export default function Home() {
         <ProductCart image={data.image} name={data.name} price={data.price} key={data.name} inCart={data.inCart}/>
       ))}
     </div>
-      
+
      <div className="flex justify-center mt-5">
       <nav aria-label="Page navigation example mt-5">
         <ul className="inline-flex -space-x-px text-base h-10">
