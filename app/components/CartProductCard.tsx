@@ -12,6 +12,7 @@ const CartProduct = ({ image, name, price, inCart }: productProp) => {
     const handleRemoveFromCart = () => {
         removeFromCart(name);
       };
+
     
     return ( 
         <li className="flex py-6">
